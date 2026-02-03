@@ -21,6 +21,13 @@ class ViewController: UIViewController {
         }
     }
 
-
+    @IBAction func sendTest(_ sender: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Analytics.logEvent("connection_test", parameters: [
+                "source": "manual_test"
+            ])
+        }
+    }
+    
 }
 
