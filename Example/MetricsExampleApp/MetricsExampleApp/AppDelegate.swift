@@ -12,14 +12,11 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
         FirebaseApp.configure()
-        
-        
+        MetricsAssembly.configure()
         
         return true
     }
@@ -41,27 +38,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-
-
 enum MetricsAssembly {
 
     static func configure() {
 
         let firebaseProvider = AnalyticsFirebaseEventReportManager()
 
-        let permutiveProvider = AnalyticsPermutiveReportEventManager(configuration: PermutiveConfiguration(
-            apiKey: "xxx",
-            organisationId: "xxx",
-            workspaceId: "xxx")
-        )
-        
-        func configure() {
-            AnalyticsDispatcher.shared.configure(
-                providers: [
-                    firebaseProvider,
-                    permutiveProvider
-                ]
+        let permutiveProvider = AnalyticsPermutiveReportEventManager(
+            configuration: PermutiveConfiguration(
+                apiKey: "xxx",
+                organisationId: "xxx",
+                workspaceId: "xxx"
             )
-        }
+        )
+
+        AnalyticsDispatcher.shared.configure(
+            providers: [
+                firebaseProvider,
+                permutiveProvider
+            ]
+        )
     }
 }

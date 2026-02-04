@@ -76,7 +76,7 @@ public class AnalyticsPermutiveReportEventManager: AnalyticsProvider {
             organisationId: configuration.organisationId,
             workspaceId: configuration.workspaceId
         ) else {
-            assertionFailure("💥 Invalid Permutive configuration")
+            //assertionFailure("💥 Invalid Permutive configuration")
             return
         }
 

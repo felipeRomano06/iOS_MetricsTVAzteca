@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAnalytics
+import iOS_MetricsTVAzteca
 
 class ViewController: UIViewController {
 
@@ -23,11 +24,26 @@ class ViewController: UIViewController {
 
     @IBAction func sendTest(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            Analytics.logEvent("connection_test", parameters: [
-                "source": "manual_test"
-            ])
+            
+            let param = MetricsParam(
+                firebaseScreen: "screen-example",
+                section: "example-section",
+                channel: "example-channel",
+                programm: "example-programm",
+                countryCode: "MX",
+                loginStatus:.anonymous,
+                idfa: "example-idfa",
+                im: "example-im",
+                isRestricted: .isFalse
+            )
+            
+            
+            AnalyticsDispatcher.shared.track(event: .screenView, params: param)
         }
     }
     
 }
 
+
+
+    
